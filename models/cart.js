@@ -4,7 +4,7 @@ const cartSchema= new schema({
     userId:{type:String, require: true}, 
     product:[
         {
-            productId:{type:String, require: true},
+            productId:{type: schema.Types.ObjectId ,ref:'Product', require: true},
             quantity:{type:Number, require: true}
         }
     ],

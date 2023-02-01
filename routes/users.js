@@ -19,7 +19,14 @@ router.put('/resetPassword/:id',authCheck.userAuthCheck,userController.resetPass
 router.delete('/delete/:id',userController.deleteUser)
 
 
-router.post('/addCart',authCheck.userAuthCheck,cartController.addCart )
+router.post('/addCart',cartController.addCart )
 
+router.put('/deleteCartProduct',cartController.deleteCartProduct )
+
+router.put('/quantityCartProduct',cartController.quantityCartProduct )
+
+router.put('/removeProducts',cartController.removeProducts )
+
+router.get('/listProducts',cartController.listProducts )
 
 module.exports = router;
