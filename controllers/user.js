@@ -485,7 +485,7 @@ const userController = {
         
             const validate = schema.validate(req.body.newPassword)
             if (validate === false) {
-                return res.status(422).json({
+                return res.status(501).json({
                     success: false,
                     error: "password doesn't meet requirement"
                 })
@@ -493,7 +493,7 @@ const userController = {
                 const newPassword = req.body.newPassword;
                 const confirmNewPassword = req.body.confirmNewPassword;
                 if (!(newPassword === confirmNewPassword)) {
-                    return res.status(422).json({
+                    return res.status(502).json({
                         success: false,
                         error: "Password and Confirm password should be the same"
                     })
@@ -504,7 +504,7 @@ const userController = {
                             bcrypt.compare(req.body.currentPassword, hash, function (error, isMatch) {
 
                                 if (!isMatch) {
-                                    return res.status(422).json({
+                                    return res.status(503).json({
                                         success: false,
                                         error: "Please enter valid correct current password!"
                                     })
@@ -521,6 +521,7 @@ const userController = {
                                                         error: hashError
                                                     })
                                                 } else {
+                                                    console.log('**********',req.params.id);
                                                     console.log('hash', hash);
                                                     var data = {
                                                         password: hash
@@ -535,7 +536,7 @@ const userController = {
                                                                     data: "Successfully Updated"
                                                                 })
                                                             } else {
-                                                                return res.status(422).json({
+                                                                return res.status(504).json({
                                                                     success: false,
                                                                     data: "admin not Found"
                                                                 })
@@ -543,9 +544,9 @@ const userController = {
 
                                                         })
                                                         .catch((err) => {
-                                                            return res.status(422).json({
+                                                            return res.status(500).json({
                                                                 success: false,
-                                                                error: err
+                                                                error: 'error'
                                                             })
                                                         })
 
@@ -557,7 +558,7 @@ const userController = {
                             })
                         })
                         .catch((err) => {
-                            return res.status(422).json({
+                            return res.status(404).json({
                                 success: false,
                                 error: err
                             })

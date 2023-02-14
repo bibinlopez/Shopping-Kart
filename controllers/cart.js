@@ -5,7 +5,7 @@ const cartController = {
        
         var userCart = await Cart.findOne({ userId: req.body.userId })
         
-
+        console.log('usercart',userCart);
         if (userCart == null) {
             // no cart add new cart
             

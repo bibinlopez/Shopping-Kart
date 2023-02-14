@@ -65,6 +65,7 @@ const productController = {
 
     },
     getProduct: (req, res) => {
+        console.log('@@@@',req.params);
         Product.findById(req.params.id)
             .then((result) => {
                 if (result) {
@@ -100,6 +101,7 @@ const productController = {
                 } else {
                     // var photo=`/${req.file.filename}`
                     // console.log('this is file',req.file);
+                    console.log(req.file.filename);
                     if (req.file) {
                         var photo = `/${req.file.filename}`
                     }
